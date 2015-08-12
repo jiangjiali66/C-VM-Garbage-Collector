@@ -93,8 +93,8 @@ void gc(VM* vm){
 
     markAll(vm);
     sweep(vm);
-
-    vm->maxObjects = vm->numObjects * 2;
+    /*Limited maxObjects does not exceed STACK_MAX*/
+    vm->maxObjects = vm->numObjects * 2 > STACK_MAX?:STACK_MAX;
 
 }
 
